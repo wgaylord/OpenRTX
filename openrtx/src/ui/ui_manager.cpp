@@ -28,7 +28,7 @@
  *   along with this program; if not, see <http://www.gnu.org/licenses/>   *
  ***************************************************************************/
 
-#include <ui/ui_toolkit.h>
+#include <ui/ui_manager.h>
 
 void UIManager::UIManager()
 {

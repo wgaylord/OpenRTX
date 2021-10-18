@@ -28,71 +28,15 @@
  *   along with this program; if not, see <http://www.gnu.org/licenses/>   *
  ***************************************************************************/
 
-#ifndef UI_TOOLKIT_H
-#define UI_TOOLKIT_H
+#ifndef UI_ELEMENT_H
+#define UI_ELEMENT_H
 
 #ifndef __cplusplus
 #error This header is C++ only!
 #endif
 
 #include <array>
-#include "ui_widget.h"
-
-/**
- * Class that manages the execution and switch of UI elements
- */
-class UIManager
-{
-public:
-    /**
-     * Constructor.
-     */
-    UIManager();
-
-    /**
-     * Destructor.
-     */
-    ~UIManager();
-
-    /**
-     * Replaces the current active UIElement with another one
-     * This methods disables the current UIElement and enables the new one.
-     *
-     * @param index: index of the new UIElement to activate, replacing the current one
-     */
-    void switchUIElement(const unsigned int elem);
-
-    /**
-     * Returns a reference to the array of available elements
-     * To be used by MenuElement to get list of callable applications
-     */
-    const std::array<UIElement>& getUIElements();
-
-    /**
-     * Renders the active view of the active element
-     */
-    void draw();
-    
-    /**
-     * Passes an event to the active element
-     *
-     * @param event: The event to be passed
-     */
-    void event(event_t event);
-    
-private:
-    
-    /**
-     * Used to create a preset list of UIElements, containing the functionality
-     * built-in OpenRTX
-     */
-    void createUIElementList();
-
-    std::array<UIElement> elements;    ///< Array of the available UIElements
-    unsigned int active;             ///< Index of the active UIElement
-    unsigned int last;               ///< Index of the previous active UIElement
-};
-
+#include "ui_view.h"
 
 /**
  * Class that corresponds to a self-contained UI functionality
@@ -141,50 +85,4 @@ private:
     unsigned int activeView;   ///< Index of the currently active view
 };
 
-/**
- * Class that consists in a group of widgets shown at the same time on the screen
- * Tipically used to create a single page of a UIElement
- * It contains zero or more Widgets
- */
-class View
-{
-public:
-    
-    /**
-     * Constructor.
-     */
-    View(std::string title, 
-         point_t origin = {0, 0}, 
-         point_t size = {SCREEN_WIDTH, SCREEN_HEIGHT}) : title(title), 
-                                                         origin(origin), 
-                                                         size(size);
-    
-    /**
-     * Destructor.
-     */
-    virtual ~View(){}
-    
-    /**
-     * Add a widget to the View
-     */
-    void addWidget(Widget widget);
-    
-    /**
-     * Renders this view and the widgets it contains
-     */
-    void draw();
-    
-    /**
-     * Passes an event to the widgets it contains
-     *
-     * @param event: The event to be passed
-     */
-    void event(event_t event);
-
-private:
-    std::string title;              ///< Title of the View
-    point_t origin, size;           ///< Origin and size of the view
-    std::array<Widget> widgetList;  ///< Array of the widgets contained
-};
-
-#endif /* UI_TOOLKIT_H */
+#endif /* UI_ELEMENT_H */
