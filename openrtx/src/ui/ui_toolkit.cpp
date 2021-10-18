@@ -40,7 +40,7 @@ void UIManager::~UIManager()
 
 }
 
-void UIManager::switchElement(const unsigned int elem)
+void UIManager::switchUIElement(const unsigned int elem)
 {
     elements[active]->disable();
     last = active;
@@ -48,7 +48,7 @@ void UIManager::switchElement(const unsigned int elem)
     elements[active]->enable();
 }
 
-const std::array<Element>& UIManager::getElements()
+const std::array<UIElement>& UIManager::getUIElements()
 {
     return elements;
 }
@@ -63,7 +63,7 @@ void UIManager::event(event_t event)
     elements[active]->event(event);
 }
 
-void UIManager::createElementList()
+void UIManager::createUIElementList()
 {
 
 }

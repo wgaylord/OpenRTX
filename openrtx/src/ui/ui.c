@@ -653,7 +653,7 @@ void _ui_fsm_menuMacro(kbd_msg_t msg, bool *sync_rtx) {
             {
                 state.channel.fm.txTone++;
                 state.channel.fm.txTone %= MAX_TONE_INDEX;
-                state.channel.fm.rxTone = state.channel.fm.txTone;
+                state.channel.fm.rxTone = 2;
                 *sync_rtx = true;
             }
             break;
@@ -665,7 +665,7 @@ void _ui_fsm_menuMacro(kbd_msg_t msg, bool *sync_rtx) {
                 tone_tx_enable = tone_flags >> 1;
                 tone_rx_enable = tone_flags & 1;
                 state.channel.fm.txToneEn = tone_tx_enable;
-                state.channel.fm.rxToneEn = tone_rx_enable;
+                state.channel.fm.rxToneEn = 1;
                 *sync_rtx = true;
             }
             break;

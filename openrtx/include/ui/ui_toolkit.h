@@ -55,18 +55,18 @@ public:
     ~UIManager();
 
     /**
-     * Replaces the current active UI Element with another one
-     * This methods disables the current UI Element and enables the new one.
+     * Replaces the current active UIElement with another one
+     * This methods disables the current UIElement and enables the new one.
      *
-     * @param index: index of the new UI Element to activate, replacing the current one
+     * @param index: index of the new UIElement to activate, replacing the current one
      */
-    void switchElement(const unsigned int elem);
+    void switchUIElement(const unsigned int elem);
 
     /**
      * Returns a reference to the array of available elements
      * To be used by MenuElement to get list of callable applications
      */
-    const std::array<Element>& getElements();
+    const std::array<UIElement>& getUIElements();
 
     /**
      * Renders the active view of the active element
@@ -83,14 +83,14 @@ public:
 private:
     
     /**
-     * Used to create a preset list of Elements, containing the functionality
+     * Used to create a preset list of UIElements, containing the functionality
      * built-in OpenRTX
      */
-    void createElementList();
+    void createUIElementList();
 
-    std::array<Element> elements;    ///< Array of the available Elements
-    unsigned int active;             ///< Index of the active Element
-    unsigned int last;               ///< Index of the previous active Element
+    std::array<UIElement> elements;    ///< Array of the available UIElements
+    unsigned int active;             ///< Index of the active UIElement
+    unsigned int last;               ///< Index of the previous active UIElement
 };
 
 
@@ -99,7 +99,7 @@ private:
  * Example: Main menu, Main screen, GPS menu...
  * It is composed by one or more views which contain zero or more Widgets
  */
-class Element
+class UIElement
 {
 public:
     
@@ -107,12 +107,12 @@ public:
      * Constructor.
      */
 
-    Element();
+    UIElement();
     
     /**
      * Destructor.
      */
-    virtual ~Element(){}
+    virtual ~UIElement(){}
     
     /**
      * Show the element on screen, resetting its state if needed
@@ -137,13 +137,13 @@ public:
     void event(event_t event);
 
 private:
-    std::array<View> viewList; ///< Array of the views composing the Element
+    std::array<View> viewList; ///< Array of the views composing the UIElement
     unsigned int activeView;   ///< Index of the currently active view
 };
 
 /**
  * Class that consists in a group of widgets shown at the same time on the screen
- * Tipically used to create a single page of a UI Element
+ * Tipically used to create a single page of a UIElement
  * It contains zero or more Widgets
  */
 class View
