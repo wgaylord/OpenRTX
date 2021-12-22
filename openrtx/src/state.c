@@ -46,7 +46,7 @@ void state_init()
      */
     if(nvm_readVFOChannelData(&state.channel) < 0)
     {
-        state.channel.mode      = FM;
+        state.channel.mode      = OPMODE_FM;
         state.channel.bandwidth = BW_25;
         state.channel.power     = 1.0;
 
